@@ -10,5 +10,22 @@ var burger = require('../models/burgers.js');
 router.get("/", function (req, res) {
 	res.redirect('/index');
 });
+//pushing data to handle bars
+router.get("/index", function(req, res){
+	burger.selectAll(function(data){
+		var handlebars = {burgers: data};
+		console.log(handlebars);
+		res.render('index', handlebars);
+	});
+});
+//post to add to burgers
+router.post("/new/burger", function(req, res){
+	console.log(body.res)
+  burger.insertOne(req.body.burgerName, function() {
+   console.log(req.body.burgerName);
+    res.redirect('/index');
+  });
+});
+
  	
 module.exports = router;
