@@ -10,22 +10,28 @@ var burger = require('../models/burgers.js');
 router.get("/", function (req, res) {
 	res.redirect('/index');
 });
-//pushing data to handle bars
 router.get("/index", function(req, res){
+		//running selectAll from burgers
 	burger.selectAll(function(data){
+		//displaying useing handlebars
 		var handlebars = {burgers: data};
 		console.log(handlebars);
+		// rendering to index or home page
 		res.render('index', handlebars);
-	});
+	});	
 });
-//post to add to burgers
+//create a route to create a burger
 router.post("/new/burger", function(req, res){
-	console.log(body.res)
-  burger.insertOne(req.body.burgerName, function() {
-   console.log(req.body.burgerName);
-    res.redirect('/index');
-  });
-});
-
- 	
+	//callling the insetone function from burgers
+	console.log(req.body);
+	burger.insertOne(req.body.burgerName, function(result){
+		console.log(result);
+		// redirecting to the home page
+		res.redirect("/index");
+	});
+}); 
+router.put("/burger/update", function(req,res){
+	console.log(req.body.burgerID)
+	burger.update(req.body.)
+})	
 module.exports = router;

@@ -1,17 +1,32 @@
 <h1>Burgers</h1>
 <!-- make div to display burgers before and after eaten -->
 <ul>
+	<!-- this is a handlebars for each function that goes though burgers -->
   {{#each burgers}}
+  <!-- this is saying unless the burger has been devoured -->
+  	{{#unless this.devoured}}
   	<li>
   	   <p>ID: {{this.id}}</p>
        <p>Burger: {{this.burgers}}</p>
-       <button type="submit" name="devoure">Devoure</button>
+       <form action="/burger/update" method="PUT">
+       			<input type="hidden" name="burgerID" type="text" value={{this.id}}>
+       			<button type="submit" name="devoure">Devoure</button>
+			</form>
   	</li>
+  	{{/unless}}
   {{/each}}
 </ul>
-
+<ul>
+	{{#each burgers}}
+	<!-- if it is devoured placein this input  -->
+		{{#if this.devoured}}
+			<input class="form-control" type="text" placeholder="{{this.id}}: {{this.burgers}}">
+		{{/if}}
+	{{/each}}
+</ul>
+<!-- a form to add a burger -->
 <h3>Add a Burgers</h3>
-<form action="/" method="POST">
+<form action="/new/burger" method="POST">
 	<textarea type="text" name="burgerName"></textarea>
 
 	<button type="submit">Submit</button>
