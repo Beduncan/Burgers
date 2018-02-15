@@ -20,12 +20,18 @@ var orm = {
 			devoured: false,
 		},function(err, result){
 			if (err) throw err;
-			//calling back the results of the insert into
+			//calling back the result to send it to burgers.js
 			Cb(result);
 		});
 	},
-	Update: function()
-
+	updateOne: function(burgerId, Cb) {
+		//query function to set devoured to true at id 
+    connection.query("UPDATE burgers SET devoured=1 WHERE id=?", [burgerId], function(err, res) {
+      if (err) throw err;
+     //callingback result so it can be sent to burgers.js
+      Cb(res);
+    });
+ 	},
 };
 module.exports = orm;
 

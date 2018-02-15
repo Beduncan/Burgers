@@ -8,8 +8,8 @@
   	<li>
   	   <p>ID: {{this.id}}</p>
        <p>Burger: {{this.burgers}}</p>
-       <form action="/burger/update" method="PUT">
-       			<input type="hidden" name="burgerID" type="text" value={{this.id}}>
+       <form action="/update/{{id}}?_method=PUT" method="POST">
+       			<input type="hidden" name="id" type="text" value={{this.id}}>
        			<button type="submit" name="devoure">Devoure</button>
 			</form>
   	</li>
@@ -26,7 +26,7 @@
 </ul>
 <!-- a form to add a burger -->
 <h3>Add a Burgers</h3>
-<form action="/new/burger" method="POST">
+<form action="./new/burger" method="POST">
 	<textarea type="text" name="burgerName"></textarea>
 
 	<button type="submit">Submit</button>

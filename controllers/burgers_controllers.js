@@ -25,13 +25,22 @@ router.post("/new/burger", function(req, res){
 	//callling the insetone function from burgers
 	console.log(req.body);
 	burger.insertOne(req.body.burgerName, function(result){
-		console.log(result);
+		// console.log(result);
 		// redirecting to the home page
 		res.redirect("/index");
 	});
-}); 
-router.put("/burger/update", function(req,res){
-	console.log(req.body.burgerID)
-	burger.update(req.body.)
-})	
+});
+router.post('/update/:id', function (req, res) {
+    burger.updateOne(req.params.id, function(data) {
+        res.redirect('/');
+    });
+});
+// router.put("/:id", function(req,res){
+// 	var id = req.params.id
+// 	//calling update function from file 
+// 	burger.update(req.body.burgerID, id, function(result){
+// 		// console.log(result);
+// 		res.redirect("/index");
+// 	})
+// })	
 module.exports = router;
