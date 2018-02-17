@@ -31,16 +31,10 @@ router.post("/new/burger", function(req, res){
 	});
 });
 router.post('/update/:id', function (req, res) {
+	//calling updateOne from burgers.js
     burger.updateOne(req.params.id, function(data) {
+        // redirecting to the home page
         res.redirect('/');
     });
-});
-// router.put("/:id", function(req,res){
-// 	var id = req.params.id
-// 	//calling update function from file 
-// 	burger.update(req.body.burgerID, id, function(result){
-// 		// console.log(result);
-// 		res.redirect("/index");
-// 	})
-// })	
+});	
 module.exports = router;
